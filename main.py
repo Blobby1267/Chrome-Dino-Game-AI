@@ -5,7 +5,6 @@ import math
 import sys
 import neat
 from tkinter import *
-import cv2
 
 
 pygame.init()
@@ -229,7 +228,8 @@ def run(config_path):
     )
 
     pop = neat.Population(config)
-    pop.run(eval_genomes, 50)
+    pop.run(eval_genomes, 5) #generations
+
 
 
 if __name__ == '__main__':
@@ -237,15 +237,3 @@ if __name__ == '__main__':
     config_path = os.path.join(local_dir, 'config.txt')
     run(config_path)
     pygame.quit()
-    cap = cv2.VideoCapture("meteor.mp4")
-    ret, frame = cap.read()
-    while True:
-        ret, frame = cap.read()
-        cv2.imshow('frame',frame)
-        if cv2.waitKey(1) & 0xFF == ord('q') or ret==False :
-            cap.release()
-            cv2.destroyAllWindows()
-            break
-        cv2.imshow('frame',frame)
-    cap.release()
-    cv2.destroyAllWindows()
